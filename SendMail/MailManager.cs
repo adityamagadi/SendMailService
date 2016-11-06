@@ -17,7 +17,7 @@ namespace SendMail
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
             client.Host = "smtp.gmail.com";
-            client.Credentials = new System.Net.NetworkCredential("adityamagadi@gmail.com", "Bullet35091#");
+            client.Credentials = new System.Net.NetworkCredential("adityamagadi@gmail.com", "");
             message.Subject = "test";
             message.Body = "this is a test body";
             client.Send(message);
