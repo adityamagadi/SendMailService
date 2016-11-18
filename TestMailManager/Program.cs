@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SendMail;
+using SendMail.Controller;
 
 namespace TestMailManager
 {
@@ -11,7 +11,7 @@ namespace TestMailManager
     {
         static void Main(string[] args)
         {
-            SendMail.MailManager.sendMail("adityamagadi@gmail.com");
+            SendMailerController.SendMail();
         }
     }
 }
