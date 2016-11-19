@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using SendMail.Interfaces;
+using System.Configuration;
 
 namespace SendMail
 {
@@ -14,7 +15,7 @@ namespace SendMail
         public void sendMail()
         {
             _client = createStmpClient();
-            _client.Send(composeMailMessage("",""));
+            _client.Send(composeMailMessage(ConfigurationManager.AppSettings["fromAddress"],""));
         }
 
         public MailMessage composeMailMessage(string toAddress, string fromAddress)
@@ -28,11 +29,11 @@ namespace SendMail
         public SmtpClient createStmpClient()
         {
             SmtpClient client = new SmtpClient();
-            client.Port = 587;
+            client.Port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
-            client.Host = "smtp.gmail.com";
-            client.Credentials = new System.Net.NetworkCredential("adityamagadi@gmail.com", "");
+            client.Host = ConfigurationManager.AppSettings["stmpProvider"];
+            client.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["userName"], "");
             return client;
         }
     }
